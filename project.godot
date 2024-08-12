@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="Godot-demo"
+run/main_scene="res://Demo.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=900
+window/size/viewport_height=1600
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [rendering]
 
