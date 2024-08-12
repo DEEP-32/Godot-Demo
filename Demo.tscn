@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn0xc1xwb0rsa"]
+[gd_scene load_steps=9 format=3 uid="uid://dn0xc1xwb0rsa"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_0ip3n"]
 [ext_resource type="Texture2D" uid="uid://bgu0vx06s42f8" path="res://MainScreen.png" id="1_4bfbk"]
 [ext_resource type="Texture2D" uid="uid://bn51wogw76ojr" path="res://GetXp_Button.png" id="2_jb2xg"]
 [ext_resource type="Texture2D" uid="uid://bd4dq1fbct3a3" path="res://LevelUpGreenBar.png" id="2_y8fsh"]
+[ext_resource type="PackedScene" uid="uid://dqkff54b8k5dp" path="res://BuyPopup.tscn" id="5_38upo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lqvdm"]
 font_size = 50
@@ -107,3 +108,7 @@ icon = ExtResource("2_jb2xg")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="BuyPopup" parent="." instance=ExtResource("5_38upo")]
+visible = false
+layout_mode = 1
