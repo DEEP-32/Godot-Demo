@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bspwerwg5orhw"]
+
+[ext_resource type="FontFile" uid="uid://3cc4ns15biko" path="res://p/ARIAL.TTF" id="1_5suvu"]
+
+[resource]
+font = ExtResource("1_5suvu")
+font_size = 60
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)

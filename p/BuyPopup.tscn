@@ -1,27 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqkff54b8k5dp"]
+[gd_scene load_steps=10 format=3 uid="uid://dqkff54b8k5dp"]
 
-[ext_resource type="Script" path="res://BuyPopup.gd" id="1_0srts"]
-[ext_resource type="Texture2D" uid="uid://bd0481sokvh2n" path="res://LevelUp_Window.png" id="1_s5onv"]
-[ext_resource type="Texture2D" uid="uid://djmkr6gh06b8q" path="res://GemButton.png" id="2_efslg"]
-[ext_resource type="Texture2D" uid="uid://dw6sflbcaj0sk" path="res://XButton.png" id="2_ofb38"]
+[ext_resource type="Script" path="res://p/BuyPopup.gd" id="1_0srts"]
+[ext_resource type="Texture2D" uid="uid://bd0481sokvh2n" path="res://p/LevelUp_Window.png" id="1_s5onv"]
+[ext_resource type="Texture2D" uid="uid://djmkr6gh06b8q" path="res://p/GemButton.png" id="2_efslg"]
+[ext_resource type="Texture2D" uid="uid://dw6sflbcaj0sk" path="res://p/XButton.png" id="2_ofb38"]
+[ext_resource type="FontFile" uid="uid://3cc4ns15biko" path="res://p/ARIAL.TTF" id="4_kdt1m"]
+[ext_resource type="LabelSettings" uid="uid://bspwerwg5orhw" path="res://p/IncreamentTimesLabelSettings.tres" id="5_fwdu3"]
+[ext_resource type="LabelSettings" uid="uid://6166as4iy5hk" path="res://p/BuyLabelSettings.tres" id="7_jv4xr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jn8r5"]
+font = ExtResource("4_kdt1m")
 font_size = 131
 outline_size = 30
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nnshh"]
+font = ExtResource("4_kdt1m")
 font_size = 95
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_c30o0"]
-font_size = 60
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_p1iay"]
-font_size = 80
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
@@ -58,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_s5onv")
 
-[node name="TextureButton" type="TextureButton" parent="PopupContent"]
+[node name="CloseButton" type="TextureButton" parent="PopupContent"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -83,7 +78,7 @@ text = "Level 1"
 label_settings = SubResource("LabelSettings_jn8r5")
 horizontal_alignment = 1
 
-[node name="CoinIncreamentLabel" type="Label" parent="."]
+[node name="CurrentCoinLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,6 +95,7 @@ text = "+500"
 label_settings = SubResource("LabelSettings_nnshh")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="100XCoinAmount" type="Label" parent="."]
 layout_mode = 1
@@ -115,7 +111,7 @@ offset_bottom = 291.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "50,00"
-label_settings = SubResource("LabelSettings_c30o0")
+label_settings = ExtResource("5_fwdu3")
 vertical_alignment = 1
 
 [node name="200XCoinAmount" type="Label" parent="."]
@@ -132,7 +128,7 @@ offset_bottom = 289.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "50,00"
-label_settings = SubResource("LabelSettings_c30o0")
+label_settings = ExtResource("5_fwdu3")
 vertical_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -164,7 +160,7 @@ offset_bottom = 54.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "50"
-label_settings = SubResource("LabelSettings_p1iay")
+label_settings = ExtResource("7_jv4xr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -196,7 +192,11 @@ offset_right = -20.0
 offset_bottom = 54.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "50"
-label_settings = SubResource("LabelSettings_p1iay")
+text = "100"
+label_settings = ExtResource("7_jv4xr")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="PopupContent/CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="TextureButton" to="." method="OnHundredXButtonPressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="OnTwoHundredXButtonPressed"]

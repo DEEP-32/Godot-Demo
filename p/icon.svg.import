@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4dq1fbct3a3"
-path="res://.godot/imported/LevelUpGreenBar.png-816759c8f93fe8c73fa8ae26dddacd61.ctex"
+uid="uid://dj5mtw5tnr1xk"
+path="res://.godot/imported/icon.svg-9f1ddf717fde7ed46397085d416cabfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LevelUpGreenBar.png"
-dest_files=["res://.godot/imported/LevelUpGreenBar.png-816759c8f93fe8c73fa8ae26dddacd61.ctex"]
+source_file="res://p/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-9f1ddf717fde7ed46397085d416cabfc.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

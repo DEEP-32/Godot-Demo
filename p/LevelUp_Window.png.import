@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd0481sokvh2n"
-path="res://.godot/imported/LevelUp_Window.png-f60e69246ddf9e7b01e4819d6727ac63.ctex"
+path="res://.godot/imported/LevelUp_Window.png-f7430a9bf565b44b8b8461bd3fd38688.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LevelUp_Window.png"
-dest_files=["res://.godot/imported/LevelUp_Window.png-f60e69246ddf9e7b01e4819d6727ac63.ctex"]
+source_file="res://p/LevelUp_Window.png"
+dest_files=["res://.godot/imported/LevelUp_Window.png-f7430a9bf565b44b8b8461bd3fd38688.ctex"]
 
 [params]
 

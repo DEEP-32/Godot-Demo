@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Godot-demo"
-run/main_scene="res://Demo.tscn"
+run/main_scene="res://p/Demo.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://p/icon.svg"
+
+[autoload]
+
+Globals="*res://p/Globals.gd"
 
 [display]
 
@@ -25,3 +29,4 @@ window/handheld/orientation=1
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

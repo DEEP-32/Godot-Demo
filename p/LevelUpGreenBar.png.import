@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgu0vx06s42f8"
-path="res://.godot/imported/MainScreen.png-cf40e62824bbbac19575d2add1436198.ctex"
+uid="uid://bd4dq1fbct3a3"
+path="res://.godot/imported/LevelUpGreenBar.png-5963d0717f632da7975acb5b5a23475d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScreen.png"
-dest_files=["res://.godot/imported/MainScreen.png-cf40e62824bbbac19575d2add1436198.ctex"]
+source_file="res://p/LevelUpGreenBar.png"
+dest_files=["res://.godot/imported/LevelUpGreenBar.png-5963d0717f632da7975acb5b5a23475d.ctex"]
 
 [params]
 
