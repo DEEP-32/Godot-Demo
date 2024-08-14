@@ -9,6 +9,8 @@ signal pop_up_closed
 @onready var gemAmountLabelHundred = $TextureButton/GemAmountLabel
 @onready var gemAmountLabelTwoHundred = $TextureButton2/GemAmountLabel
 @onready var coinLabel : Label = $CurrentCoinLabel
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var timer : Timer = $Timer
 
 func InitializeUI(currentLevel : int,currentCoin : int,hundredXBuyAmount : int , twoHundredXBuyAmount : int):
 	print("CURRENT COIN : " + str(currentCoin) + " 100 x: " + str(currentCoin * 100) + " 200 x : " + str(currentCoin * 200))
@@ -21,30 +23,33 @@ func InitializeUI(currentLevel : int,currentCoin : int,hundredXBuyAmount : int ,
 	
 
 func OnCloseButtonPressed():
-	Globals.IncreaseCoin(Globals.coinIncreament)
 	visible = false
 	pop_up_closed.emit()
 
 
 func OnHundredXButtonPressed():
-	Globals.UseResource(
-		Globals.ResourceType.GEMS,
-		Globals.GetBuyAmount(0)
-	)
-	
-	Globals.IncreaseCoin(Globals.GetResource(Globals.ResourceType.COIN) * 100)
-	visible = false
-	pop_up_closed.emit()
+	timer.stop()
+	if Globals.UseResource(Globals.ResourceType.GEMS,Globals.GetBuyAmount(0)):
+		Globals.SetNewCoin(Globals.GetResource(Globals.ResourceType.COIN) * 100)
+		visible = false
+		pop_up_closed.emit()
+	else:
+		animationPlayer.play("Gems Toaster")
 
 
 func OnTwoHundredXButtonPressed():
-	Globals.UseResource(
-		Globals.ResourceType.GEMS,
-		Globals.GetBuyAmount(1)
-	)
-	
-	Globals.IncreaseCoin(Globals.GetResource(Globals.ResourceType.COIN) * 100)
-	visible = false
-	pop_up_closed.emit()
+	timer.stop()
+	if Globals.UseResource(Globals.ResourceType.GEMS,Globals.GetBuyAmount(1)):
+		Globals.SetNewCoin(Globals.GetResource(Globals.ResourceType.COIN) * 200)
+		visible = false
+		pop_up_closed.emit()
+	else:
+		animationPlayer.play("Gems Toaster")
 
 
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Gems Toaster":
+		timer.start(0.5)
+		await timer.timeout
+		print("TIMER timeouts")
+		animationPlayer.play("Gems Toaster Back")

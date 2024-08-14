@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqkff54b8k5dp"]
+[gd_scene load_steps=16 format=3 uid="uid://dqkff54b8k5dp"]
 
 [ext_resource type="Script" path="res://p/BuyPopup.gd" id="1_0srts"]
 [ext_resource type="Texture2D" uid="uid://bd0481sokvh2n" path="res://p/LevelUp_Window.png" id="1_s5onv"]
@@ -19,6 +19,69 @@ font = ExtResource("4_kdt1m")
 font_size = 95
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfyyf"]
+bg_color = Color(0.184346, 0.592934, 0.630345, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iq7p8"]
+font = ExtResource("4_kdt1m")
+font_size = 75
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_wmhwj"]
+resource_name = "Gems Toaster"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToasterParent/Toaster:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -220)]
+}
+
+[sub_resource type="Animation" id="Animation_myul2"]
+resource_name = "Gems Toaster Back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToasterParent/Toaster:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -220), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nxpai"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToasterParent/Toaster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahnaj"]
+_data = {
+"Gems Toaster": SubResource("Animation_wmhwj"),
+"Gems Toaster Back": SubResource("Animation_myul2"),
+"RESET": SubResource("Animation_nxpai")
+}
 
 [node name="BuyPopup" type="Control"]
 layout_mode = 3
@@ -95,7 +158,6 @@ text = "+500"
 label_settings = SubResource("LabelSettings_nnshh")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="100XCoinAmount" type="Label" parent="."]
 layout_mode = 1
@@ -197,6 +259,53 @@ label_settings = ExtResource("7_jv4xr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ToasterParent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Toaster" type="Panel" parent="ToasterParent"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfyyf")
+
+[node name="Label" type="Label" parent="ToasterParent/Toaster"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.5
+offset_top = -23.0
+offset_right = 208.5
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Don't have enough gems"
+label_settings = SubResource("LabelSettings_iq7p8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ahnaj")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="pressed" from="PopupContent/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="TextureButton" to="." method="OnHundredXButtonPressed"]
 [connection signal="pressed" from="TextureButton2" to="." method="OnTwoHundredXButtonPressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

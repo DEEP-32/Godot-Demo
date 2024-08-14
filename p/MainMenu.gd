@@ -29,7 +29,7 @@ func _ready():
 	)
 
 
-func InitializeUI(coinQuantity : int, gemsQuantity : int,xp : int,level : int,maxXP : int):
+func InitializeUI(coinQuantity : int, gemsQuantity : int,xp : int,level : int,maxXP : float):
 	coinLabel.set_text(Globals.FormatNumber(coinQuantity))
 	gemsLabel.set_text(str(gemsQuantity))
 	levelProgressBar.value = xp
@@ -52,6 +52,9 @@ func OnLevelUp():
 		Globals.GetBuyAmount(0),
 		Globals.GetBuyAmount(1)
 	)
+	
+	buyPopup.animationPlayer.play("RESET")
+	coinLabel.set_text(Globals.FormatNumber(Globals.GetResource(Globals.ResourceType.COIN)))
 	
 	buyPopup.visible = true
 

@@ -2,31 +2,32 @@ extends Node
 
 signal level_up
 
+const maxXpIncreament : float = .05 
+const coinIncreament : int = 100
+
 enum ResourceType{
 	COIN,
 	GEMS
 }
 
-var defaultXpValue : int = 0
-var defaultMaxXpValue : int = 100
+var defaultXpValue : float = 0
+var defaultMaxXpValue : float = 100
 var defaultCoinValue : int = 1000
 var defaultGemValue : int = 500
 var defaultLevelValue : int = 1
 
 
 
-var maxXpIncreament : float = .5 
-var coinIncreament : int = 100
 
 var buyAmount : Array = [
 	50,
 	100
 ]
 
-var _currentXpValue : int
+var _currentXpValue : float
 var _currentCoinValue : int
 var _currentGemValue : int
-var _currentXpMaxValue : int
+var _currentXpMaxValue : float
 var _currentLevelValue : int
 
 
@@ -38,16 +39,20 @@ func _ready():
 	_currentLevelValue = defaultLevelValue
 
 
-func UseResource(resourceType : ResourceType , usedAmt : int):
+func UseResource(resourceType : ResourceType , usedAmt : int) -> bool:
 	match resourceType:
 		ResourceType.COIN:
 			if usedAmt <= _currentCoinValue:
 				_currentCoinValue = DecreaseResource(_currentCoinValue,usedAmt)
+				return true
+			return false
 		ResourceType.GEMS:
 			if usedAmt <= _currentGemValue:
 				_currentGemValue = DecreaseResource(_currentGemValue,usedAmt)
+				return true
+			return false
 		_:
-			pass
+			return false
 
 
 
@@ -58,6 +63,8 @@ func DecreaseResource(currentCount : int , amount : int):
 func IncreaseCoin(amount : int):
 	_currentCoinValue += amount
 
+func SetNewCoin(amount : int):
+	_currentCoinValue = amount
 
 func GetResource(resourceType : ResourceType) -> int:
 	match resourceType:
@@ -70,10 +77,10 @@ func GetResource(resourceType : ResourceType) -> int:
 
 
 
-func GetCurrentXp():
+func GetCurrentXp() -> float:
 	return _currentXpValue
 
-func GetCurrentMaxXp():
+func GetCurrentMaxXp() -> float:
 	return _currentXpMaxValue
 
 func GetCurrentLevel():
@@ -83,7 +90,7 @@ func GainXp(xp : int):
 	_currentXpValue += xp
 	if _currentXpValue >= _currentXpMaxValue:
 		#Setting xp on level up
-		print("GLOBALS : new max xp : " + str(_currentXpMaxValue))
+		IncreaseCoin(coinIncreament)
 		level_up.emit()
 
 func GetBuyAmount(index : int):
@@ -99,6 +106,7 @@ func PostLevelUp():
 	_currentLevelValue += 1
 	var increament = _currentXpMaxValue * maxXpIncreament
 	_currentXpMaxValue += increament
+	print("GLOBALS : new max xp : " + str(_currentXpMaxValue))
 
 
 func FormatNumber(n: int) -> String:
